@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hemil Sugunan — Cinematography Lookbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{
+  background:#050505;
+  color:#eaeaea;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+/* ================= TYPO ================= */
+h1{
+  font-size:clamp(3rem,6vw,5rem);
+  letter-spacing:.32em;
+  text-align:center;
+}
+h2{
+  text-align:center;
+  letter-spacing:.24em;
+}
+.sub{
+  text-align:center;
+  font-size:.85rem;
+  opacity:.55;
+  margin:1rem 0 3rem;
+}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:7rem 4vw;
+  position:relative;
+}
+section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,rgba(255,255,255,.04),transparent 65%);
+  pointer-events:none;
+}
+.container{max-width:1400px;margin:auto;}
+
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  display:grid;
+  place-items:center;
+  position:relative;
+  text-align:center;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,transparent 35%,#050505 88%);
+}
+.hero h5{
+  margin-top:2rem;
+  letter-spacing:.35em;
+  opacity:.55;
+  font-weight:400;
+}
+
+/* ================= CUT TOGGLE ================= */
+.cut-toggle{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:100;
+}
+.cut-toggle button{
+  background:#111;
+  color:#aaa;
+  border:1px solid #222;
+  padding:.45rem .9rem;
+  margin-left:.4rem;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  cursor:pointer;
+}
+.cut-toggle button.active{
+  color:#fff;
+  border-color:#666;
+}
+
+/* ================= GRID ================= */
+.grid{display:grid;gap:2.5rem;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:900px){
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+}
+
+/* ================= FRAME ================= */
+.frame{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:8px;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.85),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* ================= IMAGE ================= */
+.frame img{
+  position:absolute;
+  inset:-6%;
+  width:112%;
+  height:112%;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ================= CAMERA PRESETS ================= */
+.frame[data-motion="pan"] img{transform:translateX(-3%);}
+.frame[data-motion="tilt"] img{transform:translateY(-3%);}
+.frame[data-motion="dolly"] img{transform:scale(1.1);}
+.frame[data-motion="drift"] img{transform:scale(1.07) translateX(-2%);}
+.frame:hover img{transform:none;}
+
+/* ================= OVERLAY ================= */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.2));
+  opacity:0;
+  transition:opacity .4s ease;
+  display:flex;
+  align-items:flex-end;
+  padding:1.6rem;
+}
+.frame:hover .overlay{opacity:1;}
+
+.overlay-content{
+  font-size:.82rem;
+  line-height:1.6;
+  max-width:85%;
+}
+.overlay-content strong{
+  display:block;
+  letter-spacing:.16em;
+  font-size:.7rem;
+  opacity:.7;
+  margin-bottom:.5rem;
+}
+
+/* ================= EXPERIENCE ================= */
+.experience{
+  max-width:900px;
+  margin:auto;
+  line-height:1.9;
+}
+.experience div{margin-bottom:2rem;}
+.role{font-weight:600;}
+.meta{opacity:.6;font-size:.85rem;}
+
+/* ================= KNOW ME ================= */
+.know{max-width:900px;margin:auto;}
+.qa{border-bottom:1px solid rgba(255,255,255,.08);}
+.qa button{
+  width:100%;
+  background:none;
+  border:none;
+  color:#eaeaea;
+  padding:1.5rem 0;
+  font-size:.95rem;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+.qa button span{
+  font-size:.7rem;
+  opacity:.6;
+  letter-spacing:.16em;
+}
+.answer{
+  height:0;
+  overflow:hidden;
+  transition:height .45s ease;
+  font-size:.9rem;
+  line-height:1.7;
+  opacity:.85;
+}
+
+/* ================= CONTACT ================= */
+.contact{text-align:center;line-height:2;font-size:.9rem;}
+
+footer{
+  text-align:center;
+  padding:6rem 0;
+  font-size:.75rem;
+  opacity:.5;
+}
+
+/* ================= QR ================= */
+.qr{
+  display:grid;
+  place-items:center;
+  padding:.2rem 0;
+}
+.qr img{
+  width:200px;
+  border-radius:14px;
+  background:#111;
+  padding:1.2rem;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.8),
+    0 0 0 1px rgba(255,255,255,.08),
+    inset 0 0 40px rgba(0,0,0,.4);
+  opacity:.9;
+}
+.d-none{
+display: none;
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- CUT TOGGLE -->
+<div class="cut-toggle">
+  <button data-cut="director" class="active">DIRECTOR CUT</button>
+  <button data-cut="general" class="d-none">GENERAL CUT</button>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>CINEMATOGRAPHY<br>LOOKBOOK</h1>
+    <h5>HEMIL SUGUNAN</h5>
+  </div>
+</section>
+
+<!-- SCALE -->
+<section>
+<div class="container">
+<h2>SCALE & ISOLATION</h2>
+<p class="sub">Aerial perspective · human vs landscape</p>
+
+<div class="grid grid-2">
+<div class="frame" data-motion="drift">
+<img src="assets/images/10.jpeg">
+<div class="overlay">
+<div class="overlay-content" data-general>
+<strong>VISUAL INTENT</strong>
+Desaturated earth tones · human reduced to texture.
+</div>
+<div class="overlay-content" data-director style="display:none">
+<strong>DIRECTOR NOTE</strong>
+Helicam master designed for VFX horizon extension.
+</div>
+</div>
+</div>
+
+<div class="frame" data-motion="tilt">
+<img src="assets/images/1.jpeg">
+<div class="overlay">
+<div class="overlay-content" data-general>
+<strong>CAMERA FEEL</strong>
+Natural light dominance · grounded perspective.
+</div>
+<div class="overlay-content" data-director style="display:none">
+<strong>DIRECTOR NOTE</strong>
+Locked exposure and midtone protection.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTROLLED INTERIORS -->
+<section>
+<div class="container">
+<h2>CONTROLLED INTERIORS · PERFORMANCE</h2>
+<p class="sub">Directional light · isolation · motivated sources</p>
+
+<div class="grid grid-2" style="max-width:900px;margin:auto;">
+<div class="frame" data-motion="dolly">
+<img src="assets/images/2.jpeg">
+<div class="overlay">
+<div class="overlay-content">
+<strong>LIGHTING LOGIC</strong>
+Blue ambient vs warm practicals · character isolation.
+</div>
+</div>
+</div>
+
+<div class="frame" data-motion="pan">
+<img src="assets/images/4.jpeg">
+<div class="overlay">
+<div class="overlay-content">
+<strong>INTENT</strong>
+Performance-first framing · controlled falloff.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CHARACTER -->
+<section>
+<div class="container">
+<h2>CHARACTER · INTIMIDATION · PRESENCE</h2>
+<p class="sub">Backlight control · silhouette · power framing</p>
+
+<div class="grid grid-2" style="max-width:900px;margin:auto;">
+<div class="frame" data-motion="drift">
+<img src="assets/images/5.jpeg">
+<div class="overlay">
+<div class="overlay-content">
+<strong>PALETTE</strong>
+Warm backlight · crushed shadows · controlled skin.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MASS -->
+<section>
+<div class="container">
+<h2>MASS · CROWD · POWER</h2>
+<p class="sub">Controlled chaos · ritual choreography</p>
+
+<div class="grid grid-2" style="max-width:900px;margin:auto;">
+<div class="frame" data-motion="pan">
+<img src="assets/images/3.jpeg">
+<div class="overlay">
+<div class="overlay-content" data-general>
+<strong>PALETTE</strong>
+Amber fire tones.<br>High shadow density.
+</div>
+<div class="overlay-content" data-director style="display:none">
+<strong>DIRECTOR NOTE</strong>
+Crowd density mapped for overhead continuity.
+</div>
+</div>
+</div>
+
+<div class="frame" data-motion="dolly">
+<img src="assets/images/11.jpeg">
+<div class="overlay">
+<div class="overlay-content" data-general>
+<strong>SET CONTROL</strong>
+Symmetry · ceremony · scale.
+</div>
+<div class="overlay-content" data-director style="display:none">
+<strong>DIRECTOR NOTE</strong>
+Lighting zones separated for VFX passes.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- URBAN -->
+<section>
+<div class="container">
+<h2>URBAN · NIGHT · MODERNITY</h2>
+<p class="sub">Practical lighting · VFX-ready plates</p>
+
+<div class="grid grid-3">
+<div class="frame" data-motion="pan">
+<img src="assets/images/6.jpeg">
+<div class="overlay"><div class="overlay-content">Neon accents · layered depth</div></div>
+</div>
+<div class="frame" data-motion="drift">
+<img src="assets/images/8.jpeg">
+<div class="overlay"><div class="overlay-content">Festival lighting · color rhythm</div></div>
+</div>
+<div class="frame" data-motion="tilt">
+<img src="assets/images/9.jpeg">
+<div class="overlay"><div class="overlay-content">Urban chaos · exposure balance</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+<div class="container">
+<h2>WORK EXPERIENCE</h2>
+<p class="sub">Feature films · VFX-heavy productions</p>
+
+<div class="experience">
+<div><span class="role">Lokah – Chapter One</span><br>Associate Cinematographer · Helicam Operator · VFX Supervisor<div class="meta">Wayfarer Films Pvt Ltd</div></div>
+<div><span class="role">Lucky Bhaskar</span><br>Associate Cinematographer · Helicam Operator · VFX Supervisor<div class="meta">Sithara Entertainment</div></div>
+<div><span class="role">King of Kotha</span><br>1st Assistant Cinematographer · Helicam Operator<div class="meta">Wayfarer Films Pvt Ltd</div></div>
+<div><span class="role">Rorschach</span><br>Assistant Cinematographer · Helicam Operator<div class="meta">Mammootty Kampany</div></div>
+<div><span class="role">Bazooka</span><br>Associate Cinematographer · Helicam Operator<div class="meta">Theater of Dreams</div></div>
+</div>
+</div>
+</section>
+
+<!-- KNOW ME -->
+<section>
+<div class="container">
+<h2>KNOW ME, A LITTLE</h2>
+<p class="sub">How I see · How I decide · How I collaborate</p>
+
+<div class="know">
+
+<div class="qa">
+<button>When you first see a scene, what do you look for?<span>OPEN</span></button>
+<div class="answer">
+I look for where the emotional weight is sitting — who holds power and who is exposed. That tells me where the camera should stand.
+</div>
+</div>
+
+<div class="qa">
+<button>When should the camera move or stay still?<span>OPEN</span></button>
+<div class="answer">
+The camera moves only when the character’s perspective shifts. If nothing changes internally, the camera stays quiet.
+</div>
+</div>
+
+<div class="qa">
+<button>How do you approach lighting under pressure?<span>OPEN</span></button>
+<div class="answer">
+I reduce the scene to one believable source and shape around it. Less fixtures, more control.
+</div>
+</div>
+
+<div class="qa">
+<button>How do you work with VFX-heavy scenes?<span>OPEN</span></button>
+<div class="answer">
+I think about VFX at script stage — clean plates, locked exposure, consistent direction. Assumptions create problems later.
+</div>
+</div>
+
+<div class="qa">
+<button>What should a director never worry about?<span>OPEN</span></button>
+<div class="answer">
+Technical continuity and visual coherence. That responsibility is mine.
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section>
+<div class="contact">
+<h2>CONTACT</h2>
+<p class="sub">Available for feature films</p>
+Hemil Sugunan<br>
+📧 hemilsai@gmail.com<br>
+📞 +91 80752 21964
+</div>
+</section>
+<section class="qr">
+  <img src="assets/images/qr.png" alt="Instagram QR">
+</section>
+
+
+<footer>© Hemil Sugunan · Cinematography</footer>
+
+<script>
+/* CUT TOGGLE */
+const buttons=document.querySelectorAll('.cut-toggle button');
+const general=document.querySelectorAll('[data-general]');
+const director=document.querySelectorAll('[data-director]');
+buttons.forEach(btn=>{
+  btn.onclick=()=>{
+    buttons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    if(btn.dataset.cut==="director"){
+      general.forEach(e=>e.style.display="none");
+      director.forEach(e=>e.style.display="block");
+    }else{
+      general.forEach(e=>e.style.display="block");
+      director.forEach(e=>e.style.display="none");
+    }
+  };
+});
+
+/* ACCORDION */
+document.querySelectorAll('.qa button').forEach(btn=>{
+  btn.onclick=()=>{
+    const ans=btn.nextElementSibling;
+    const open=ans.style.height && ans.style.height!=="0px";
+    document.querySelectorAll('.answer').forEach(a=>a.style.height="0px");
+    if(!open){ans.style.height=ans.scrollHeight+"px";}
+  };
+});
+</script>
+
+</body>
+</html>
