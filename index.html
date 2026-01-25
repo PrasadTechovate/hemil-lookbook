@@ -112,6 +112,15 @@ section::before{
   right:20px;
   z-index:100;
 }
+.cut-toggle{
+  transition:opacity .35s ease, transform .35s ease;
+}
+.cut-toggle.hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-6px);
+}
+
 .cut-toggle button{
   background:#111;
   color:#aaa;
@@ -538,6 +547,25 @@ document.querySelectorAll('.qa button').forEach(btn=>{
   };
 });
 </script>
+<script>
+/* HIDE DIRECTOR CUT OUTSIDE HERO */
+const heroSection = document.querySelector('.hero');
+const cutToggle = document.querySelector('.cut-toggle');
 
+const heroObserver = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      cutToggle.classList.remove('hidden');
+    } else {
+      cutToggle.classList.add('hidden');
+    }
+  },
+  {
+    threshold: 0.4 /* hero must be meaningfully visible */
+  }
+);
+
+heroObserver.observe(heroSection);
+</script>
 </body>
 </html>
