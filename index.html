@@ -49,11 +49,16 @@ section::before{
 
 /* ================= HERO ================= */
 .hero{
-  min-height:100vh;
+  min-height:100svh; /* safer mobile viewport */
   display:grid;
   place-items:center;
   position:relative;
   text-align:center;
+}
+@supports not (height: 100svh) {
+  .hero {
+    min-height: 100vh;
+  }
 }
 
 /* DESKTOP GRADIENT (unchanged feel) */
@@ -78,19 +83,27 @@ section::before{
 
 /* ================= HERO MOBILE FIX ================= */
 @media (max-width: 768px){
+
   .hero{
-    min-height:92svh; /* fixes mobile browser UI issue */
+    display:flex;
+    align-items:flex-start;   /* STOP vertical centering */
+    justify-content:center;
+    padding-top:22vh;         /* OPTICAL CENTER */
   }
 
-  .hero::after{
-    background:
-      radial-gradient(
-        circle at 50% 42%,   /* pull glow slightly DOWN */
-        rgba(0,0,0,0) 45%,   /* wider breathing room */
-        #050505 92%
-      );
+  .hero > div{
+    transform:translateY(-4vh); /* fine-tune upward bias */
+  }
+
+}
+@media (max-width: 360px){
+  h1{
+    font-size:1.9rem;
+    letter-spacing:.12em;
   }
 }
+
+
 
 /* ================= CUT TOGGLE ================= */
 .cut-toggle{
