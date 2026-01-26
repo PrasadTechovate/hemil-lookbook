@@ -80,6 +80,55 @@ section::before{
   opacity:.55;
   font-weight:400;
 }
+/* ================= SCROLL INDICATOR ================= */
+.scroll-indicator{
+  position:absolute;
+  bottom:4.5vh;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  opacity:.35;
+  pointer-events:none;
+}
+
+.scroll-indicator span{
+  width:18px;
+  height:18px;
+  border-bottom:2px solid rgba(255,255,255,.9);
+  border-right:2px solid rgba(255,255,255,.9);
+  transform:rotate(45deg);
+  animation:scrollPulse 2.2s infinite;
+}
+
+.scroll-indicator span:nth-child(2){
+  animation-delay:.35s;
+  opacity:.6;
+}
+
+/* Subtle light run */
+@keyframes scrollPulse{
+  0%{
+    opacity:0;
+    transform:rotate(45deg) translate(-2px,-2px);
+  }
+  30%{
+    opacity:.8;
+  }
+  60%{
+    opacity:.2;
+  }
+  100%{
+    opacity:0;
+    transform:rotate(45deg) translate(4px,4px);
+  }
+}
+
+/* Hide on very small screens if needed */
+@media(max-height:600px){
+  .scroll-indicator{display:none;}
+}
 
 /* ================= HERO MOBILE FIX ================= */
 @media (max-width: 768px){
@@ -287,6 +336,11 @@ display: none;
     <h1>CINEMATOGRAPHY<br>LOOKBOOK</h1>
     <h5>HEMIL SUGUNAN</h5>
   </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <span></span>
+    <span></span>
+  </div>
 </section>
 
 <!-- SCALE -->
@@ -445,11 +499,31 @@ Lighting zones separated for VFX passes.
 <p class="sub">Feature films · VFX-heavy productions</p>
 
 <div class="experience">
+<div>
+  <span class="role">Surya 46</span><br>
+  Associate Cinematographer · Helicam Operator · VFX Supervisor
+  <div class="meta">Sithara Entertainment</div>
+</div>
 <div><span class="role">Lokah – Chapter One</span><br>Associate Cinematographer · Helicam Operator · VFX Supervisor<div class="meta">Wayfarer Films Pvt Ltd</div></div>
 <div><span class="role">Lucky Bhaskar</span><br>Associate Cinematographer · Helicam Operator · VFX Supervisor<div class="meta">Sithara Entertainment</div></div>
 <div><span class="role">King of Kotha</span><br>1st Assistant Cinematographer · Helicam Operator<div class="meta">Wayfarer Films Pvt Ltd</div></div>
 <div><span class="role">Rorschach</span><br>Assistant Cinematographer · Helicam Operator<div class="meta">Mammootty Kampany</div></div>
 <div><span class="role">Bazooka</span><br>Associate Cinematographer · Helicam Operator<div class="meta">Theater of Dreams</div></div>
+<div>
+  <span class="role">Independent Cinematographer</span><br>
+  Trinity – Music Video
+  <div class="meta">
+    Saregama · Concept-to-execution visual design
+  </div>
+</div>
+
+<div>
+  <span class="role">Brand Collaborations</span><br>
+  Cinematographer · Visual Consultant
+  <div class="meta">
+    Cult.fit · Kavitha Jewellers
+  </div>
+</div>  
 </div>
 </div>
 </section>
@@ -548,24 +622,30 @@ document.querySelectorAll('.qa button').forEach(btn=>{
 });
 </script>
 <script>
-/* HIDE DIRECTOR CUT OUTSIDE HERO */
+/* HERO VISIBILITY CONTROLS */
 const heroSection = document.querySelector('.hero');
 const cutToggle = document.querySelector('.cut-toggle');
+const scrollIndicator = document.querySelector('.scroll-indicator');
 
 const heroObserver = new IntersectionObserver(
   ([entry]) => {
     if (entry.isIntersecting) {
+      // Hero in view
       cutToggle.classList.remove('hidden');
+      scrollIndicator.style.opacity = '.35';
     } else {
+      // Hero out of view
       cutToggle.classList.add('hidden');
+      scrollIndicator.style.opacity = '0';
     }
   },
   {
-    threshold: 0.4 /* hero must be meaningfully visible */
+    threshold: 0.45
   }
 );
 
 heroObserver.observe(heroSection);
 </script>
+
 </body>
 </html>
