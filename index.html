@@ -244,6 +244,14 @@ section::before{
   object-fit:cover;
   transition:transform .8s cubic-bezier(.22,.61,.36,1);
 }
+@media (max-width: 768px){
+  .frame img{
+    inset:0;
+    width:100%;
+    height:100%;
+    object-position:center top;
+  }
+}
 
 /* ================= CAMERA PRESETS ================= */
 .frame[data-motion="pan"] img{transform:translateX(-3%);}
