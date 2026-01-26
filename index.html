@@ -89,7 +89,7 @@ section::before{
   display:flex;
   flex-direction:column;
   gap:6px;
-  opacity:.35;
+  opacity:.8;
   pointer-events:none;
 }
 
@@ -105,6 +105,9 @@ section::before{
 .scroll-indicator span:nth-child(2){
   animation-delay:.35s;
   opacity:.6;
+}
+.scroll-indicator {
+  transition: opacity .4s ease;
 }
 
 /* Subtle light run */
@@ -191,6 +194,33 @@ section::before{
 .grid-3{grid-template-columns:repeat(3,1fr);}
 @media(max-width:900px){
   .grid-2,.grid-3{grid-template-columns:1fr;}
+}
+@media (max-width: 900px) {
+  .grid.grid-2 .frame {
+    margin: 0 auto;
+  }
+}
+
+/* CENTER SINGLE-ITEM GRIDS */
+.grid.grid-2:has(.frame:only-child),
+.grid.grid-2:has(.frame:nth-child(1):last-child) {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+/* FALLBACK FOR BROWSERS WITHOUT :has() */
+.grid.grid-2.single {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+.grid.grid-2.single .frame {
+  max-width: 720px;
+  width: 100%;
+}
+
+.grid.grid-2:has(.frame:only-child) .frame {
+  max-width: 720px;
+  width: 100%;
 }
 
 /* ================= FRAME ================= */
@@ -411,13 +441,35 @@ Performance-first framing · controlled falloff.
 </div>
 </section>
 
+<!-- BRANDED STORYTELLING -->
+<section>
+  <div class="container">
+    <h2>BRANDED STORYTELLING · PERFORMANCE REALISM</h2>
+    <p class="sub">Narrative lighting · brand visibility · emotional continuity</p>
+
+    <div class="grid grid-2 single" style="max-width:900px;margin:auto;">
+
+      <div class="frame" data-motion="drift">
+        <img src="assets/images/12.jpeg">
+        <div class="overlay">
+          <div class="overlay-content">
+            <strong>BRAND INTEGRATION</strong>
+            Low-key nocturnal palette · controlled skin tones · logo readable without flattening mood.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CHARACTER -->
 <section>
 <div class="container">
 <h2>CHARACTER · INTIMIDATION · PRESENCE</h2>
 <p class="sub">Backlight control · silhouette · power framing</p>
 
-<div class="grid grid-2" style="max-width:900px;margin:auto;">
+<div class="grid grid-2 single" style="max-width:900px;margin:auto;">
 <div class="frame" data-motion="drift">
 <img src="assets/images/5.jpeg">
 <div class="overlay">
@@ -632,15 +684,15 @@ const heroObserver = new IntersectionObserver(
     if (entry.isIntersecting) {
       // Hero in view
       cutToggle.classList.remove('hidden');
-      scrollIndicator.style.opacity = '.35';
+      scrollIndicator.style.opacity = '.8';
     } else {
       // Hero out of view
-      cutToggle.classList.add('hidden');
+      cutToggle.classList.add('hidden');  
       scrollIndicator.style.opacity = '0';
     }
   },
   {
-    threshold: 0.45
+    threshold: 0.75
   }
 );
 
