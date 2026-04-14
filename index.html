@@ -373,7 +373,8 @@ footer{
   min-height:100vh;
   display:flex;
   align-items:center;
-  justify-content:center; /* IMPORTANT */
+  justify-content:center;
+  margin-top:8rem; /* ADD THIS */
 }
 
 .contact-grid{
@@ -387,9 +388,11 @@ footer{
 
 
 /* IMAGE SIDE */
+
 .contact-image{
   height:100vh;
   overflow:hidden;
+  position:relative; /* YOU MISSED THIS */
 }
 
 .contact-image img{
@@ -399,7 +402,7 @@ footer{
   object-position:center;
   filter:contrast(1.05) brightness(.92);
   object-fit:cover;
-  object-position: 60% 40%; /* adjust THIS */
+  object-position: 62% 32%;
 }
 
 /* RIGHT SIDE */
@@ -432,7 +435,8 @@ footer{
 /* WHATSAPP */
 .whatsapp-btn{
   display:inline-block;
-  border:1px solid #333;
+  border:1px solid #444;
+  background:rgba(255,255,255,0.02);
   padding:.8rem 1.4rem;
   text-decoration:none;
   color:#eaeaea;
@@ -442,8 +446,8 @@ footer{
 }
 
 .whatsapp-btn:hover{
-  background:#111;
-  border-color:#777;
+  background:rgba(255,255,255,0.08);
+  border-color:#888;
 }
 
 /* QR */
@@ -463,15 +467,10 @@ footer{
   }
 
   .contact-info{
-    padding:3rem 2rem;
+    padding-left:5rem;
   }
 }
-.contact-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to right, rgba(0,0,0,0) 60%, #050505 100%);
-}
+
 
 .d-none{display:none;}
 </style>
@@ -842,23 +841,23 @@ I reduce the scene to one believable source and shape around it. Less fixtures, 
   <div class="contact-grid">
 
     <!-- LEFT IMAGE -->
-    <div class="contact-image">
+    <!-- <div class="contact-image">
       <img src="assets/images/contact-cinematic.jpeg" alt="Behind the scenes">
-    </div>
+    </div> -->
 
     <!-- RIGHT CONTENT -->
     <div class="contact-info">
 
-      <h2>CONTACT</h2>
-      <p class="sub">Available for feature films · collaborations</p>
+      <h2>LET’S BUILD SOMETHING</h2>
+      <p class="sub">For films that demand precision, scale, and control</p>
 
-      <div class="contact-block">
+      <div class="contact-block sub">
         <div>Hemil Sugunan</div>
         <div>📧 hemilsai@gmail.com</div>
         <div>📞 +91 80752 21964</div>
       </div>
 
-      <div class="contact-actions">
+      <div class="contact-actions sub">
 
         <!-- WhatsApp -->
         <a href="https://wa.me/918075221964" target="_blank" class="whatsapp-btn">
@@ -872,6 +871,9 @@ I reduce the scene to one believable source and shape around it. Less fixtures, 
 
       </div>
 
+    </div>
+    <div class="contact-image">
+      <img src="assets/images/contact-cinematic2.jpeg" alt="Behind the scenes">
     </div>
 
   </div>
