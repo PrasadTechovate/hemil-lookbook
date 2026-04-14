@@ -371,16 +371,20 @@ footer{
 
 .contact-final{
   min-height:100vh;
-  background:#050505;
   display:flex;
   align-items:center;
+  justify-content:center; /* IMPORTANT */
 }
 
 .contact-grid{
   display:grid;
   grid-template-columns: 60% 40%;
   width:100%;
+  max-width:1400px; /* CRITICAL */
+  margin:auto;
 }
+
+
 
 /* IMAGE SIDE */
 .contact-image{
@@ -394,6 +398,8 @@ footer{
   object-fit:cover;
   object-position:center;
   filter:contrast(1.05) brightness(.92);
+  object-fit:cover;
+  object-position: 60% 40%; /* adjust THIS */
 }
 
 /* RIGHT SIDE */
@@ -401,7 +407,8 @@ footer{
   padding:6rem 4rem;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-start;
+  padding-top:8vh; /* creates visual balance */
   gap:2rem;
 }
 
