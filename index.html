@@ -369,6 +369,97 @@ footer{
   opacity:.5;
 }
 
+.contact-final{
+  min-height:100vh;
+  background:#050505;
+  display:flex;
+  align-items:center;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns: 60% 40%;
+  width:100%;
+}
+
+/* IMAGE SIDE */
+.contact-image{
+  height:100vh;
+  overflow:hidden;
+}
+
+.contact-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:contrast(1.05) brightness(.92);
+}
+
+/* RIGHT SIDE */
+.contact-info{
+  padding:6rem 4rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2rem;
+}
+
+.contact-info h2{
+  letter-spacing:.25em;
+}
+
+.contact-block{
+  line-height:2;
+  font-size:.95rem;
+  opacity:.8;
+}
+
+/* ACTIONS */
+.contact-actions{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+
+/* WHATSAPP */
+.whatsapp-btn{
+  display:inline-block;
+  border:1px solid #333;
+  padding:.8rem 1.4rem;
+  text-decoration:none;
+  color:#eaeaea;
+  font-size:.8rem;
+  letter-spacing:.18em;
+  transition:.3s ease;
+}
+
+.whatsapp-btn:hover{
+  background:#111;
+  border-color:#777;
+}
+
+/* QR */
+.qr-wrap img{
+  width:140px;
+  opacity:.85;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-image{
+    height:60vh;
+  }
+
+  .contact-info{
+    padding:3rem 2rem;
+  }
+}
+
 .d-none{display:none;}
 </style>
 
@@ -618,7 +709,7 @@ allowfullscreen></iframe>
 
 <div class="video-frame">
   <iframe
-    src="https://drive.google.com/file/d/1CS9pFxS0WvwMdf5Zyq5pup6K3FrURRFO/preview?autoplay=1&t=22s"
+    src="https://drive.google.com/file/d/1CS9pFxS0WvwMdf5Zyq5pup6K3FrURRFO/preview"
     allow="autoplay"
     allowfullscreen>
   </iframe>
@@ -732,7 +823,49 @@ I reduce the scene to one believable source and shape around it. Less fixtures, 
 </div>
 </section>
 
-<!-- CONTACT -->
+
+<section class="contact-final">
+
+  <div class="contact-grid">
+
+    <!-- LEFT IMAGE -->
+    <div class="contact-image">
+      <img src="assets/images/contact-cinematic.jepg" alt="Behind the scenes">
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="contact-info">
+
+      <h2>CONTACT</h2>
+      <p class="sub">Available for feature films · collaborations</p>
+
+      <div class="contact-block">
+        <div>Hemil Sugunan</div>
+        <div>📧 hemilsai@gmail.com</div>
+        <div>📞 +91 80752 21964</div>
+      </div>
+
+      <div class="contact-actions">
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/918075221964" target="_blank" class="whatsapp-btn">
+          CHAT ON WHATSAPP
+        </a>
+
+        <!-- QR -->
+        <div class="qr-wrap">
+          <img src="assets/images/qr.png" alt="Instagram QR">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT
 <section>
 <div class="contact">
 <h2>CONTACT</h2>
@@ -741,10 +874,10 @@ Hemil Sugunan<br>
 📧 hemilsai@gmail.com<br>
 📞 +91 80752 21964
 </div>
-</section>
+</section> -->
 
 <!-- WHATSAPP CONTACT -->
-<section class="whatsapp-section">
+<!-- <section class="whatsapp-section">
   <a 
     class="whatsapp-link"
     href="https://wa.me/918075221964"
@@ -760,7 +893,7 @@ Hemil Sugunan<br>
 
 <section class="qr">
   <img src="assets/images/qr.png" alt="Instagram QR">
-</section>
+</section> -->
 
 
 <footer>© Hemil Sugunan · Cinematography</footer>
