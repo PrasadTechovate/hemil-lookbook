@@ -1146,7 +1146,7 @@ function playDriveVideo(el){
   const container = el.closest(".drive-video-frame");
   const iframe = container.querySelector("iframe");
 
-  iframe.src = iframe.dataset.src + "?autoplay=1";
+  iframe.src = iframe.dataset.src;
   iframe.style.opacity = "1";
   iframe.style.pointerEvents = "auto";  // ADD THIS
 
