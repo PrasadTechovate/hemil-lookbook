@@ -311,6 +311,90 @@ section::before{
   }
 }
 
+
+.drive-video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:10px;
+  overflow:hidden;
+  background:#000;
+}
+
+/* THUMB */
+.drive-thumb{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;      /* ADD */
+  height:100%;     /* ADD */
+
+  z-index:2;
+}
+
+.drive-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.85) contrast(1.05);
+}
+
+.drive-thumb img{
+  transition:transform .6s ease;
+}
+
+.drive-video-frame:hover .drive-thumb img{
+  transform:scale(1.05);
+}
+
+
+/* DARK CINEMATIC OVERLAY */
+.drive-thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.6), transparent);
+}
+
+/* PLAY BUTTON */
+.drive-play{
+  width:70px;
+  height:70px;
+  position: absolute;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(10px);
+
+  font-size:1.6rem;
+  color:#fff;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* IFRAME */
+.drive-video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+
+  opacity:0;
+  pointer-events:none;   /* ADD THIS */
+  z-index:1;
+}
+
 /* ================= CONTACT ================= */
 .contact{text-align:center;line-height:2;font-size:.9rem;}
 
@@ -467,7 +551,7 @@ footer{
   }
 
   .contact-info{
-    padding-left:5rem;
+    padding:3rem 2rem;
   }
 }
 
@@ -792,10 +876,25 @@ allowfullscreen></iframe>
     allowfullscreen>
   </iframe>
 </div> -->
-<div class="video-frame">
-  <video controls poster="assets/images/thumb.jpeg">
-    <source src="https://drive.google.com/file/d/1CS9pFxS0WvwMdf5Zyq5pup6K3FrURRFO/preview" type="video/mp4">
-  </video>
+<div class="drive-video-frame">
+
+  <!-- THUMBNAIL -->
+  <div class="drive-thumb" onclick="playDriveVideo(this)">
+    <img src="assets/images/8.jpeg" alt="Video Thumbnail">
+    <div class="drive-play">
+      <svg viewBox="0 0 24 24" width="28" height="28">
+        <polygon points="6,4 20,12 6,20" fill="white"></polygon>
+      </svg>
+    </div>
+  </div>
+
+  <!-- IFRAME -->
+  <iframe
+    data-src="https://drive.google.com/file/d/1CS9pFxS0WvwMdf5Zyq5pup6K3FrURRFO/preview"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+
 </div>
 
 </div>
@@ -1040,6 +1139,19 @@ const heroObserver = new IntersectionObserver(
 );
 
 heroObserver.observe(heroSection);
+</script>
+
+<script>
+function playDriveVideo(el){
+  const container = el.closest(".drive-video-frame");
+  const iframe = container.querySelector("iframe");
+
+  iframe.src = iframe.dataset.src + "?autoplay=1";
+  iframe.style.opacity = "1";
+  iframe.style.pointerEvents = "auto";  // ADD THIS
+
+  el.style.display = "none";
+}
 </script>
 
 </body>
